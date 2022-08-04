@@ -29,3 +29,17 @@ func TestProb2(t *testing.T) {
 		t.Errorf("sumEvenFibs(4000000) = %d; want %d", got, want)
 	}
 }
+
+func TestProb3(t *testing.T) {
+	got := biggestPrimeFactor(13195)
+	want := 29
+	if got != want {
+		t.Errorf("biggestPrimeFactor(13195) = %d; want %d", got, want)
+	}
+
+	got = biggestPrimeFactor(600851475143)
+	want = 6857
+	if got != want {
+		t.Errorf("biggestPrimeFactor(600851475143) = %d; want %d", got, want)
+	}
+}

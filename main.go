@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 // Sum the distinct multiples of a and b that are less than n.
 // Project Euler prob 1.
 // Implementation is in linear time (0(n)).
@@ -36,6 +40,42 @@ func sumEvenFibs(max int) int {
 		prev = cur
 	}
 	return sum
+}
+
+// Biggest prime factor of n.
+// Proj Euler prob 3.
+func biggestPrimeFactor(n int) int {
+	var bpf int
+
+	// Sieve of Eratosthenes (O(log n)) to find primes up to sqrt(n)
+	floorSqrt := int(math.Floor(math.Sqrt(float64(n))))
+	notPrimeMask := make([]bool, floorSqrt+1) // elements default to false
+	for i := 2; i <= floorSqrt; i++ {
+		if notPrimeMask[i] {
+			continue
+		}
+		for j := i; j <= floorSqrt; j += i {
+			notPrimeMask[j] = i != j
+		}
+	}
+
+	for val, isNotPrime := range notPrimeMask {
+		if val < 2 || isNotPrime {
+			continue
+		}
+		// Do we have a prime factor?
+		if n%val == 0 {
+			// Yes
+			n /= val
+			bpf = val
+			if n == 1 {
+				// Fully factorised
+				break
+			}
+		}
+	}
+
+	return bpf
 }
 
 func main() {
