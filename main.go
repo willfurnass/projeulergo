@@ -22,12 +22,10 @@ func sumDistinctMultsLinear(a, b, n int) int {
 func sumEvenFibs(max int) int {
 	prevprev := 1
 	prev := 2
-	var cur int
 
 	sum := prev
-
 	for {
-		cur = prevprev + prev
+		cur := prevprev + prev
 		if cur > max {
 			break
 		}
