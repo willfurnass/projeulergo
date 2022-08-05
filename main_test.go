@@ -116,3 +116,16 @@ func TestLCMRange(t *testing.T) {
 	   t.Errorf("lcmRange(20) = %d; want %d", got, want)
 	}
 }
+
+func TestDiffSumSqsSqSums(t *testing.T) {
+	got := diffSumSqsSqSums(10)
+	want := 2640
+	if got != want {
+		t.Errorf("diffSumSqsSqSums(10) = %d; want %d", got, want)
+	}
+	got = diffSumSqsSqSums(100)
+	want = 25164150
+	if got != want {
+		t.Errorf("diffSumSqsSqSums(100) = %d; want %d", got, want)
+	}
+}

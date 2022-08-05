@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"math"
 	"strconv"
 )
@@ -176,6 +177,20 @@ func lcmRange(n int) int {
 		accum = lcm(accum, i)
 	}
 	return accum
+}
+
+// a to the power of b.
+func powInt(a, b int) int {
+	return int(math.Pow(float64(a), float64(b)))
+
+}
+
+// Difference between the sum of the squares of the first n natural numbers and the square of the sum of those natural numbers.
+// Proj Euler prob 6.
+func diffSumSqsSqSums(n int) int {
+	sumseq := sumSeqConst(1, n)
+	sumSqs := ((2 * n * n * n) + (3 * n * n) + n) / 6
+	return (sumseq * sumseq) - sumSqs
 }
 
 func main() {
