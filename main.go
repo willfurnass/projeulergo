@@ -24,8 +24,7 @@ func sumDistinctMultsLinear(a, b, n int) int {
 
 // Sum the even Fibonacci numbers that don't exceed max.
 func sumEvenFibs(max int) int {
-	prevprev := 1
-	prev := 2
+	prevprev, prev := 1, 2
 
 	sum := prev
 	for {
@@ -36,8 +35,7 @@ func sumEvenFibs(max int) int {
 		if cur%2 == 0 {
 			sum += cur
 		}
-		prevprev = prev
-		prev = cur
+		prevprev, prev = prev, cur
 	}
 	return sum
 }
