@@ -142,3 +142,16 @@ func TestNthPrime(t *testing.T) {
 		t.Errorf("nthPrime(10001) = %d; want %d", got, want)
 	}
 }
+
+func TestProb8(t *testing.T) {
+	got := prob8(4)
+	want := 5832
+	if got != want {
+		t.Errorf("prob8(4) = %d; want %d", got, want)
+	}
+	got = prob8(13)
+	want = 23514624000
+	if got != want {
+		t.Errorf("prob8(13) = %d; want %d", got, want)
+	}
+}
