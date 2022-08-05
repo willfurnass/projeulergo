@@ -180,3 +180,11 @@ func TestSumPrimesBelowBound(t *testing.T) {
 		t.Errorf("sumPrimesBelowBound(2000000) = %d; want %d", got, want)
 	}
 }
+
+func TestProb11(t *testing.T) {
+	got := prob11(4)
+	want := 70600674
+	if got != want {
+		t.Errorf("prob11(4) = %d; want %d", got, want)
+	}
+}
