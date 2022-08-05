@@ -39,6 +39,7 @@ func sumDistinctMultsConst(a, b, n int) int {
 }
 
 // Sum the even Fibonacci numbers that don't exceed max.
+// Project Euler prob 2.
 func sumEvenFibs(max int) int {
 	prevprev, prev := 1, 2
 
