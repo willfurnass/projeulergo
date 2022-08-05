@@ -1,3 +1,3 @@
-module github.com/projeulergo
+module github.com/willfurnass/projeulergo
 
 go 1.18
