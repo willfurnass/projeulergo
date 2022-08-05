@@ -131,5 +131,52 @@ func maxProduct2NDigitInts(nDigits int) (int, error) {
 	return max, err
 }
 
+// Greatest Common Divisor of a and b.
+// Implemented using Euclid's algorithm.
+func gcd(a, b int) int {
+	var ret int
+	x, y := a, b
+	if b < a {
+		x, y = b, a
+	}
+	for {
+		rem := y % x // 171
+		if rem == 0 {
+			ret = x
+			break
+		}
+		x, y = rem, x
+	}
+	return ret
+}
+
+// Absolute value of x.
+func absInt(x int) int {
+	if x < 0 {
+		return -x
+	} else {
+		return x
+	}
+}
+
+// Lowest Common Multiple of a and b.
+// Implemented using gcd (Greatest Common Multiple) function.
+func lcm(a, b int) int {
+	return absInt(a * b) / gcd(a, b)
+}
+
+// Lowest Common Multiple of all natural numbers up to and including n.
+// Proj Euler prob 5.
+func lcmRange(n int) int {
+	if n < 3 {
+		return n
+	}
+	accum := 2
+	for i := 3; i <= n; i++ {
+		accum = lcm(accum, i)
+	}
+	return accum
+}
+
 func main() {
 }
