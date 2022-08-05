@@ -43,3 +43,35 @@ func TestProb3(t *testing.T) {
 		t.Errorf("biggestPrimeFactor(600851475143) = %d; want %d", got, want)
 	}
 }
+
+func TestIsPalindrome(t *testing.T) {
+	got := isPalindrome(9009)
+	want := true
+	if got != want {
+		t.Errorf("isPalindrome(9009) = %t; want %t", got, want)
+	}
+	got = isPalindrome(9008)
+	want = false
+	if got != want {
+		t.Errorf("isPalindrome(9008) = %t; want %t", got, want)
+	}
+}
+func TestProb4(t *testing.T) {
+	got, err := maxProduct2NDigitInts(2)
+	want := 9009
+	if err != nil {
+		t.Errorf("Prob4(2) errored: %v; want %d", err, want)
+	}
+	if got != want {
+		t.Errorf("Prob4(2) = %d; want %d", got, want)
+	}
+
+	got, err = maxProduct2NDigitInts(3)
+	want = 906609
+	if err != nil {
+		t.Errorf("Prob4(3) errored: %v; want %d", err, want)
+	}
+	if got != want {
+		t.Errorf("Prob4(3) = %d; want %d", got, want)
+	}
+}

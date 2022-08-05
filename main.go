@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"math"
+	"strconv"
 )
 
 // Sum the distinct multiples of a and b that are less than n.
@@ -74,6 +76,44 @@ func biggestPrimeFactor(n int) int {
 	}
 
 	return bpf
+}
+
+// Whether x is a palindrome.
+func isPalindrome(x int) bool {
+	ret := true
+	xRunes := []rune(strconv.Itoa(x))
+	lenXRunes := len(xRunes)
+	for i := range xRunes {
+		if xRunes[i] != xRunes[lenXRunes-i-1] {
+			ret = false
+			break
+		}
+	}
+	return ret
+}
+
+// The largest palindrome made from the product of two n-digit numbers.
+// Returns a non-nil error if no palindrome found.
+// Project Euler prob 4.
+func maxProduct2NDigitInts(nDigits int) (int, error) {
+	ub := int(math.Pow10(nDigits)) - 1
+	lb := int(math.Pow10(nDigits - 1))
+	max := 0
+	for i := ub; i >= lb; i-- {
+		for j := i; j >= lb; j-- {
+			p := i * j
+			if isPalindrome(p) {
+				if p > max {
+					max = p
+				}
+			}
+		}
+	}
+	var err error
+	if max == 0 {
+		err = errors.New("No palindromes found")
+	}
+	return max, err
 }
 
 func main() {
