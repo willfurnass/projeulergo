@@ -101,19 +101,19 @@ func TestGCD(t *testing.T) {
 	got := gcd(1071, 462)
 	want := 21
 	if got != want {
-	   t.Errorf("gcdEuclid(1071, 462) = %d; want %d", got, want)
+		t.Errorf("gcdEuclid(1071, 462) = %d; want %d", got, want)
 	}
 }
 func TestLCMRange(t *testing.T) {
 	got := lcmRange(10)
 	want := 2520
 	if got != want {
-	   t.Errorf("lcmRange(10) = %d; want %d", got, want)
+		t.Errorf("lcmRange(10) = %d; want %d", got, want)
 	}
 	got = lcmRange(20)
 	want = 232792560
 	if got != want {
-	   t.Errorf("lcmRange(20) = %d; want %d", got, want)
+		t.Errorf("lcmRange(20) = %d; want %d", got, want)
 	}
 }
 
