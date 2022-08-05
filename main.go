@@ -57,24 +57,27 @@ func sumEvenFibs(max int) int {
 	return sum
 }
 
+// Sieve of Eratosthenes (O(log n)) to find primes up to n.
+func sieve(n int) *[]bool {
+	notPrimeMask := make([]bool, n+1) // elements default to false
+	for i := 2; i <= n; i++ {
+		if notPrimeMask[i] {
+			continue
+		}
+		for j := i * i; j <= n; j += i {
+			notPrimeMask[j] = i != j
+		}
+	}
+	return &notPrimeMask
+}
+
 // Biggest prime factor of n.
 // Proj Euler prob 3.
 func biggestPrimeFactor(n int) int {
 	var bpf int
 
-	// Sieve of Eratosthenes (O(log n)) to find primes up to sqrt(n)
 	floorSqrt := int(math.Floor(math.Sqrt(float64(n))))
-	notPrimeMask := make([]bool, floorSqrt+1) // elements default to false
-	for i := 2; i <= floorSqrt; i++ {
-		if notPrimeMask[i] {
-			continue
-		}
-		for j := i * i; j <= floorSqrt; j += i {
-			notPrimeMask[j] = i != j
-		}
-	}
-
-	for val, isNotPrime := range notPrimeMask {
+	for val, isNotPrime := range *sieve(floorSqrt) {
 		if val < 2 || isNotPrime {
 			continue
 		}
@@ -195,8 +198,24 @@ func diffSumSqsSqSums(n int) int {
 }
 
 
-// By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
-// What is the 10 001st prime number?
+// Nth prime number.
+// Find by iteratively apply Sieve of Eratosthenes over increasingly larger ranges.
+// Proj Euler prob 7.
+func nthPrime(n int) int {
+	ub := 2 * n
+	for {
+		nPrimes := 0
+		for val, isNotPrime := range *sieve(ub) {
+			if val >= 2 && !isNotPrime {
+				nPrimes++
+				if nPrimes == n {
+					return val
+				}
+			}
+		}
+		ub += n
+	}
+}
 
 func main() {
 }

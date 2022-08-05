@@ -129,3 +129,16 @@ func TestDiffSumSqsSqSums(t *testing.T) {
 		t.Errorf("diffSumSqsSqSums(100) = %d; want %d", got, want)
 	}
 }
+
+func TestNthPrime(t *testing.T) {
+	got := nthPrime(6)
+	want := 13
+	if got != want {
+		t.Errorf("nthPrime(6) = %d; want %d", got, want)
+	}
+	got = nthPrime(10001)
+	want = 104743
+	if got != want {
+		t.Errorf("nthPrime(10001) = %d; want %d", got, want)
+	}
+}
