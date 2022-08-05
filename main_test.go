@@ -188,3 +188,16 @@ func TestProb11(t *testing.T) {
 		t.Errorf("prob11(4) = %d; want %d", got, want)
 	}
 }
+
+func TestMinTriNumExcessOfNDivisors(t *testing.T) {
+	got := minTriNumExcessOfNDivisors(5)
+	want := 28
+	if got != want {
+		t.Errorf("minTriNumExcessOfNDivisors(5) = %d; want %d", got, want)
+	}
+	got = minTriNumExcessOfNDivisors(500)
+	want = 76576500
+	if got != want {
+		t.Errorf("minTriNumExcessOfNDivisors(500) = %d; want %d", got, want)
+	}
+}

@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -355,7 +354,7 @@ func prob11(winSize int) int {
 					max = prod
 				}
 			}
-			if r > winSize - 1 && c < ncols-winSize {
+			if r > winSize-1 && c < ncols-winSize {
 				// Find product for runs of length winSize along other diagonal
 				prod := 1
 				for i := 0; i < winSize; i++ {
@@ -370,6 +369,33 @@ func prob11(winSize int) int {
 	return max
 }
 
+// Find the first triangle number  with over n divisors.
+// Proj Euler prob 12.
+// Probably not a particularly efficient approach.
+func minTriNumExcessOfNDivisors(n int) int {
+	iter, tri := 1, 1
+
+	for {
+		nDivisors := 0
+ 		floorSqrt := int(math.Floor(math.Sqrt(float64(tri))))
+		for i := 1; i <= floorSqrt; i++ {
+			if tri % i == 0 {
+				if i == tri / i {
+					nDivisors++
+				} else {
+					nDivisors += 2
+				}
+				if nDivisors > n {
+					return tri
+				}
+			}
+		}
+		iter++
+		tri += iter
+	}
+	// Shouldn't get here.
+	return 0
+}
 
 func main() {
 }
