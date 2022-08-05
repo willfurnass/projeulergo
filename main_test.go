@@ -16,6 +16,27 @@ func TestProb1(t *testing.T) {
 	}
 }
 
+func TestSumSeqConst(t *testing.T) {
+	got := sumSeqConst(3, 10)
+	want := 3 + 6 + 9
+	if got != want {
+		t.Errorf("sumSeqConst(3, 10-1) = %d; want %d", got, want)
+	}
+}
+func TestSumDistinctMultsConst(t *testing.T) {
+	got := sumDistinctMultsConst(3, 5, 10-1)
+	want := 3 + 6 + 9 + 5
+	if got != want {
+		t.Errorf("sumDistinctMultsConst(3, 5, 10-1) = %d; want %d", got, want)
+	}
+
+	got = sumDistinctMultsConst(3, 5, 1000-1)
+	want = 233168
+	if got != want {
+		t.Errorf("sumDistinctMultsConst(3, 5, 1000-1) = %d; want %d", got, want)
+	}
+}
+
 func TestProb2(t *testing.T) {
 	got := sumEvenFibs(90)
 	want := 44

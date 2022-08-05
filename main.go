@@ -21,7 +21,21 @@ func sumDistinctMultsLinear(a, b, n int) int {
 		sum -= i
 	}
 	return sum
+}
 
+// Sum of all multiples of d less or equal to ub.
+func sumSeqConst(d int, ub int) int {
+	n := ub / d
+	ret := n * ((2 * d) + ((n - 1) * d)) / 2
+	return ret
+
+}
+
+// Sum the distinct multiples of a and b that are less than n.
+// Project Euler prob 1.
+// Implementation is in constant time (0(1)).
+func sumDistinctMultsConst(a, b, n int) int {
+	return sumSeqConst(a, n) + sumSeqConst(b, n) - sumSeqConst(a*b, n)
 }
 
 // Sum the even Fibonacci numbers that don't exceed max.
