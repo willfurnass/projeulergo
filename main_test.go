@@ -167,3 +167,16 @@ func TestPythagoreanTriplet(t *testing.T) {
 		t.Errorf("pythagoreanTriplet(1000) = %d; want %d", got, want)
 	}
 }
+
+func TestSumPrimesBelowBound(t *testing.T) {
+	got := sumPrimesBelowBound(10)
+	want := 17
+	if got != want {
+		t.Errorf("sumPrimesBelowBound(4) = %d; want %d", got, want)
+	}
+	got = sumPrimesBelowBound(2000000)
+	want = 142913828922
+	if got != want {
+		t.Errorf("sumPrimesBelowBound(2000000) = %d; want %d", got, want)
+	}
+}

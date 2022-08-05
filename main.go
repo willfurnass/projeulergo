@@ -268,5 +268,16 @@ func pythagoreanTriplet(n int) (int, int, int, error) {
 	return 0, 0, 0, errors.New("no satisfactory Pythagorean triplet found")
 }
 
+// Sum of all primes below n.
+func sumPrimesBelowBound(n int) int {
+	var sum int
+	for val, isNotPrime := range *sieve(n) {
+		if val >= 2 && !isNotPrime {
+			sum += val
+		}
+	}
+	return sum
+}
+
 func main() {
 }
