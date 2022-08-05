@@ -69,7 +69,7 @@ func biggestPrimeFactor(n int) int {
 		if notPrimeMask[i] {
 			continue
 		}
-		for j := i; j <= floorSqrt; j += i {
+		for j := i * i; j <= floorSqrt; j += i {
 			notPrimeMask[j] = i != j
 		}
 	}
@@ -193,6 +193,10 @@ func diffSumSqsSqSums(n int) int {
 	sumSqs := ((2 * n * n * n) + (3 * n * n) + n) / 6
 	return (sumseq * sumseq) - sumSqs
 }
+
+
+// By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+// What is the 10 001st prime number?
 
 func main() {
 }
