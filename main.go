@@ -188,6 +188,8 @@ func powInt(a, b int) int {
 // Proj Euler prob 6.
 func diffSumSqsSqSums(n int) int {
 	sumseq := sumSeqConst(1, n)
+	// The sums of squares of sequence of integers are 'pyramid' numbers,
+	// for which there a 0(1) way of calculating the nth:
 	sumSqs := ((2 * n * n * n) + (3 * n * n) + n) / 6
 	return (sumseq * sumseq) - sumSqs
 }
