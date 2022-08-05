@@ -78,7 +78,7 @@ func TestIsPalindrome(t *testing.T) {
 	}
 }
 func TestProb4(t *testing.T) {
-	got, err := maxProduct2NDigitInts(2)
+	got, err := maxPalinProduct2NDigitInts(2)
 	want := 9009
 	if err != nil {
 		t.Errorf("Prob4(2) errored: %v; want %d", err, want)
@@ -87,7 +87,7 @@ func TestProb4(t *testing.T) {
 		t.Errorf("Prob4(2) = %d; want %d", got, want)
 	}
 
-	got, err = maxProduct2NDigitInts(3)
+	got, err = maxPalinProduct2NDigitInts(3)
 	want = 906609
 	if err != nil {
 		t.Errorf("Prob4(3) errored: %v; want %d", err, want)

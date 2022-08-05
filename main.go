@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"math"
 	"strconv"
 )
@@ -111,7 +110,7 @@ func isPalindrome(x int) bool {
 // The largest palindrome made from the product of two n-digit numbers.
 // Returns a non-nil error if no palindrome found.
 // Project Euler prob 4.
-func maxProduct2NDigitInts(nDigits int) (int, error) {
+func maxPalinProduct2NDigitInts(nDigits int) (int, error) {
 	ub := int(math.Pow10(nDigits)) - 1
 	lb := int(math.Pow10(nDigits - 1))
 	max := 0
