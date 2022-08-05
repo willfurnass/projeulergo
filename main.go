@@ -255,5 +255,20 @@ func prob8(winSize int) int {
 	return maxProduct
 }
 
+// Find a Pythagorean triplet where sum equals n.
+// Proj Euler prob 9.
+func pythagoreanTriplet(n int) (int, int, int, error) {
+	for a := 1; a < n; a++ {
+		for b := a+1; b < n; b++ {
+			c := n - a - b
+			if a*a + b*b == c*c {
+				return a, b, c, nil
+			}
+		}
+	}
+	return 0, 0, 0, errors.New("no satisfactory Pythagorean triplet found")
+}
+
+
 func main() {
 }

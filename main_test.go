@@ -155,3 +155,15 @@ func TestProb8(t *testing.T) {
 		t.Errorf("prob8(13) = %d; want %d", got, want)
 	}
 }
+
+func TestPythagoreanTriplet(t *testing.T) {
+	a, b, c, err := pythagoreanTriplet(1000)
+	if err != nil {
+		t.Errorf("pythagoreanTriplet(1000) unexpectedly errored: %v", err)
+	}
+	got := a * b * c
+	want := 31875000
+	if got != want {
+		t.Errorf("pythagoreanTriplet(1000) = %d; want %d", got, want)
+	}
+}
