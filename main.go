@@ -7,6 +7,7 @@ import (
 	"math/big"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 // Sum the distinct multiples of a and b that are less than n.
@@ -657,6 +658,86 @@ func decDigitSum2PowerN(n uint) uint {
 	}
 	for _, x := range arr {
 		sum += x
+	}
+	return sum
+}
+
+var numWordMap = map[int]string{
+	1:  "one",
+	2:  "two",
+	3:  "three",
+	4:  "four",
+	5:  "five",
+	6:  "six",
+	7:  "seven",
+	8:  "eight",
+	9:  "nine",
+	10: "ten",
+	11: "eleven",
+	12: "twelve",
+	13: "thirteen",
+	14: "fourteen",
+	15: "fifteen",
+	16: "sixteen",
+	17: "seventeen",
+	18: "eighteen",
+	19: "nineteen",
+	20: "twenty",
+	30: "thirty",
+	40: "forty",
+	50: "fifty",
+	60: "sixty",
+	70: "seventy",
+	80: "eighty",
+	90: "ninety",
+}
+
+// Express a decimal integer 1 <= n <= 1000 in English words.
+func decimalToWords(n int) *[]string {
+	if n > 1000 || n < 1 {
+		fmt.Errorf("out of range: %v", n)
+	}
+
+	words := []string{}
+
+	if n == 1000 {
+		words = append(words, "one", "thousand")
+		return &words
+	}
+
+	if n > 99 {
+		digit := n / 100
+		words = append(words, numWordMap[digit], "hundred")
+		if n%100 == 0 {
+			return &words
+		}
+		words = append(words, "and")
+		n -= (100 * digit)
+	}
+
+	if n > 20 {
+		words = append(words, numWordMap[(n/10)*10])
+		if n%10 == 0 {
+			return &words
+		}
+		words = append(words, numWordMap[n%10])
+		return &words
+
+	}
+	words = append(words, numWordMap[n])
+	return &words
+}
+
+// Sum of characters in all English words for the numbers 1..1000 inclusive.
+// Excludes hyphens and spaces but not 'and'.
+// Proj Euelr prob 17.
+func prob17(lb int, ub int) int {
+	var sum int
+
+	for i := lb; i <= ub; i++ {
+		for _, w := range *decimalToWords(i) {
+			sum += utf8.RuneCountInString(w)
+		}
 	}
 	return sum
 }

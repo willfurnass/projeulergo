@@ -260,3 +260,17 @@ func TestDecDigitSum2PowerN(t *testing.T) {
 		t.Errorf("decDigitSum2PowerN(1000) = %d; want %d", got, want)
 	}
 }
+
+func TestProb17(t *testing.T) {
+	got := prob17(1, 5)
+	var want int = 19
+	if got != want {
+		t.Errorf("prob17(1, 5) = %d; want %d", got, want)
+	}
+
+	got = prob17(1, 1000)
+	want = 21124
+	if got != want {
+		t.Errorf("prob17(1, 1000) = %d; want %d", got, want)
+	}
+}
