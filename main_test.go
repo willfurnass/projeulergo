@@ -223,3 +223,19 @@ func TestProb13CustomArbPrec(t *testing.T) {
 		t.Errorf("prob13CustomArbPrec() = %d; want %d", got, want)
 	}
 }
+
+func TestCollatzSeqLen(t *testing.T) {
+	got := collatzSeqLen(13)
+	var want uint = 10
+	if got != want {
+		t.Errorf("collatzSeqLen(13) = %d; want %d", got, want)
+	}
+}
+
+func TestLongestCollatzSeqLen(t *testing.T) {
+	got := longestCollatzSeqLen(1000000)
+	var want uint = 837799
+	if got != want {
+		t.Errorf("LongestCollatzSeqLen(1000000) = %d; want %d", got, want)
+	}
+}

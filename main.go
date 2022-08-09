@@ -553,5 +553,39 @@ func prob13CustomArbPrec() (uint64, error) {
 	return strconv.ParseUint(retStr, 10, 64)
 }
 
+// Length of Collatz seqence starting with n.
+func collatzSeqLen(n uint) uint {
+	var steps uint = 1
+	for {
+		if n%2 == 0 {
+			n /= 2
+		} else {
+			n = 3*n + 1
+		}
+		steps++
+		if n == 1 {
+			break
+		}
+	}
+	return steps
+}
+
+// Length of longest Collatz sequence for starting numbers 1 <= x < n.
+// Proj Euler prob 14.
+func longestCollatzSeqLen(n uint) uint {
+	var start uint
+	var maxChainLength uint
+	var bestStart uint
+
+	for start = 1; start < n; start++ {
+		steps := collatzSeqLen(start)
+		if steps > maxChainLength {
+			maxChainLength = steps
+			bestStart = start
+		}
+	}
+	return bestStart
+}
+
 func main() {
 }
