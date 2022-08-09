@@ -201,3 +201,14 @@ func TestMinTriNumExcessOfNDivisors(t *testing.T) {
 		t.Errorf("minTriNumExcessOfNDivisors(500) = %d; want %d", got, want)
 	}
 }
+
+func TestProb13BigInt(t *testing.T) {
+	got, err := prob13BigInt()
+	var want uint64 = 5537376230
+	if err != nil {
+		t.Errorf("prob13BigInt() unexpectedly errored: %v", err)
+	}
+	if got != want {
+		t.Errorf("prob13BigInt() = %d; want %d", got, want)
+	}
+}
