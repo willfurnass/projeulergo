@@ -590,14 +590,16 @@ func longestCollatzSeqLen(n uint) uint {
 // Binomial Coefficient (n k).
 //
 // Here we find (n k) iteratively rather than using the standard approach of
-//   n! / (k! * (n-k)!)
+//
+//	n! / (k! * (n-k)!)
+//
 // so as to avoid overflows.
 func binomCoeff(n uint64, k uint64) uint64 {
 	var binomCoeff float64 = 1
 	var i uint64
 
 	for i < k {
-		binomCoeff *= float64(n - i) / float64(k - i)
+		binomCoeff *= float64(n-i) / float64(k-i)
 		i += 1
 	}
 	return uint64(binomCoeff)
@@ -611,14 +613,14 @@ func binomCoeff(n uint64, k uint64) uint64 {
 //
 // Proj Euler prob 15.
 func prob15(sideLen uint64) uint64 {
-	return binomCoeff(sideLen * 2, sideLen)
+	return binomCoeff(sideLen*2, sideLen)
 }
 
 // Sum of digits of decimal n.
 // Proj Euler prob 16.
 func sumOfDigits(n uint) uint {
 	var sum uint
-    for n > 0 {
+	for n > 0 {
 		sum += n % 10
 		n /= 10
 	}
@@ -646,14 +648,14 @@ func decDigitSum2PowerN(n uint) uint {
 	for i = 0; i < n; i++ {
 		for j = 0; j < nDecDig; j++ {
 			if carry == 0 && arr[j] == 0 {
-			 	continue
+				continue
 			}
 			tmp = (arr[j] * 2) + carry
 			arr[j] = tmp % 10
 			carry = tmp / 10
 		}
 	}
-	for _, x := range(arr) {
+	for _, x := range arr {
 		sum += x
 	}
 	return sum
