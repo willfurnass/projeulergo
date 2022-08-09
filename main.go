@@ -529,7 +529,7 @@ func prob13CustomArbPrec() (uint64, error) {
 	numNDigits := len([]rune(prob13Strs[0]))
 	// After adding >=2 limbs divide the result by this to find what needs to be
 	// carried over if moving on to process higher-order limbs.
-	denominator := uint64(math.Pow(float64(10), float64(limbNDigits-1)))
+	denominator := uint64(math.Pow(float64(10), float64(limbNDigits)))
 
 	// For each limb range (from low-order to high-order):
 	for i := numNDigits; i > 0; i -= limbNDigits {
