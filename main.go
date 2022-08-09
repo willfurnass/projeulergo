@@ -614,5 +614,46 @@ func prob15(sideLen uint64) uint64 {
 	return binomCoeff(sideLen * 2, sideLen)
 }
 
+// Sum of digits of decimal n.
+// Proj Euler prob 16.
+func sumOfDigits(n uint) uint {
+	var sum uint
+    for n > 0 {
+		sum += n % 10
+		n /= 10
+	}
+	return sum
+}
+
+// Sum of digits in the decimal representation of 2^n.
+// Proj Euler prob 16.
+func decDigitSum2PowerN(n uint) uint {
+	// Upper bound on number of decimal digits in 2^n
+	nDecDig := uint(math.Ceil(float64(n) * math.Log10(2)))
+
+	// Array to store the digits of the decimal number
+	arr := make([]uint, nDecDig)
+
+	// Initally all zeros apart from the first element i.e. represents 2^0
+	arr[0] = 1
+
+	var i, j, tmp, carry, sum uint
+	// For each power of 2:
+	for i = 0; i < n; i++ {
+		for j = 0; j < nDecDig; j++ {
+			if carry == 0 && arr[j] == 0 {
+			 	continue
+			}
+			tmp = (arr[j] * 2) + carry
+			arr[j] = tmp % 10
+			carry = tmp / 10
+		}
+	}
+	for _, x := range(arr) {
+		sum += x
+	}
+	return sum
+}
+
 func main() {
 }
