@@ -239,3 +239,10 @@ func TestLongestCollatzSeqLen(t *testing.T) {
 		t.Errorf("LongestCollatzSeqLen(1000000) = %d; want %d", got, want)
 	}
 }
+func TestProb15(t *testing.T) {
+	got := prob15(20)
+	var want uint64 = 137846528820
+	if got != want {
+		t.Errorf("prob15(20) = %d; want %d", got, want)
+	}
+}

@@ -587,5 +587,32 @@ func longestCollatzSeqLen(n uint) uint {
 	return bestStart
 }
 
+// Binomial Coefficient (n k).
+//
+// Here we find (n k) iteratively rather than using the standard approach of
+//   n! / (k! * (n-k)!)
+// so as to avoid overflows.
+func binomCoeff(n uint64, k uint64) uint64 {
+	var binomCoeff float64 = 1
+	var i uint64
+
+	for i < k {
+		binomCoeff *= float64(n - i) / float64(k - i)
+		i += 1
+	}
+	return uint64(binomCoeff)
+}
+
+// Number of different ways of moving from top left of square grid of width
+// sideLen to bottom right.
+//
+// The problem is essential the binomial coefficient (n k),
+// where n == 2 x sideLen and k == sideLen.
+//
+// Proj Euler prob 15.
+func prob15(sideLen uint64) uint64 {
+	return binomCoeff(sideLen * 2, sideLen)
+}
+
 func main() {
 }
