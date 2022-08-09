@@ -626,6 +626,10 @@ func sumOfDigits(n uint) uint {
 }
 
 // Sum of digits in the decimal representation of 2^n.
+//
+// NB need to represent decimal as arbitrary precision integers using an array
+// so as to cope with larger values of n with less risk of overflows.
+//
 // Proj Euler prob 16.
 func decDigitSum2PowerN(n uint) uint {
 	// Upper bound on number of decimal digits in 2^n
