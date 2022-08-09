@@ -512,8 +512,44 @@ func prob13BigInt() (uint64, error) {
 		x.SetString(str, 10)
 		accum.Add(accum, x)
 	}
+
 	// Extract the first 10 decimal digits and convert to finite precision.
 	retStr := string([]rune(fmt.Sprintf("%v", accum))[:10])
+	return strconv.ParseUint(retStr, 10, 64)
+}
+
+func prob13CustomArbPrec() (uint64, error) {
+	var sumLimbs uint64
+	var carryOver uint64
+
+	// Implement arbitrary precision support by splitting large integers into
+	// runs of contiguous decimal digits ('limbs') of length 10.
+	limbNDigits := 10
+	// Number of decimal digits in all large integers in our input array.
+	numNDigits := len([]rune(prob13Strs[0]))
+	// After adding >=2 limbs divide the result by this to find what needs to be
+	// carried over if moving on to process higher-order limbs.
+	denominator := uint64(math.Pow(float64(10), float64(limbNDigits)))
+
+	// For each limb range (from low-order to high-order):
+	for i := numNDigits; i > 0; i -= limbNDigits {
+		// Initally zero
+		sumLimbs = carryOver
+
+		// For each big integer in our input array:
+		for _, s := range prob13Strs {
+			// Extract the limb of interest as a uint64
+			limb, err := strconv.ParseUint(string([]rune(s)[i-limbNDigits:i]), 10, 64)
+			if err != nil {
+				panic(err)
+			}
+			sumLimbs += limb
+		}
+		carryOver = sumLimbs / denominator
+	}
+
+	// Extract the first 10 decimal digits and convert to finite precision.
+	retStr := string([]rune(fmt.Sprintf("%v", sumLimbs))[:10])
 	return strconv.ParseUint(retStr, 10, 64)
 }
 
