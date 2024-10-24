@@ -7,6 +7,7 @@ import (
 	"math/big"
 	"strconv"
 	"strings"
+	"time"
 	"unicode/utf8"
 )
 
@@ -737,6 +738,21 @@ func prob17(lb int, ub int) int {
 	for i := lb; i <= ub; i++ {
 		for _, w := range *decimalToWords(i) {
 			sum += utf8.RuneCountInString(w)
+		}
+	}
+	return sum
+}
+
+// How many Sundays fell on the first of the month during the twentieth century
+// (1 Jan 1901 to 31 Dec 2000)?
+func prob19() int {
+	var sum int = 0
+	for y := 1901; y <= 2000; y++ {
+		for m := 1; m <= 12; m++ {
+			t := time.Date(y, time.Month(m), 1, 0, 0, 0, 0, time.UTC)
+			if t.Weekday() == time.Sunday {
+				sum++
+			}
 		}
 	}
 	return sum

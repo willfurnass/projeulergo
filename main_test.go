@@ -274,3 +274,11 @@ func TestProb17(t *testing.T) {
 		t.Errorf("prob17(1, 1000) = %d; want %d", got, want)
 	}
 }
+
+func TestProb19(t *testing.T) {
+	got := prob19()
+	var want int = 171
+	if got != want {
+		t.Errorf("prob19() = %d; want %d", got, want)
+	}
+}
