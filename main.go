@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -784,5 +785,33 @@ func prob20() int {
 	return sumDigitsBigInt(factBigInt(100))
 }
 
+// sumNameScores sorts a string of names, finds the sum of the alphabetical
+// positions of each character in each name, finds the product of that sum and
+// the name's position in the list, then finally returns the sum of those
+// products.
+//
+// namesStr is a string of comma-delimited names where each is encapsulated in
+// double quotes.
+//
+// Solution to prob 22
+func sumNameScores(namesStr string) int {
+	namesStrLower := strings.ToLower(namesStr)
+	names := strings.Split(namesStrLower, ",")
+	sort.Strings(names)
+
+	finalSum := 0
+	for i, n := range names {
+		orderScore := i + 1
+
+		alphaScore := 0
+		for _, c := range strings.Trim(n, "\"") {
+			// Add the position of each character in the latin alphabet
+			// (a: 1, b: 2, etc)
+			alphaScore += int(byte(c)-byte('a')) + 1
+		}
+		finalSum += orderScore * alphaScore
+	}
+	return finalSum
+}
 func main() {
 }

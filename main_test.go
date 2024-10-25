@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestProb1(t *testing.T) {
 	got := sumDistinctMultsLinear(3, 5, 10-1)
@@ -288,5 +291,17 @@ func TestProb20(t *testing.T) {
 	var want int = 648
 	if got != want {
 		t.Errorf("prob20() = %d; want %d", got, want)
+	}
+}
+
+func TestProb22(t *testing.T) {
+	dat, err := os.ReadFile("0022_names.txt")
+	if err != nil {
+		panic(err)
+	}
+	got := sumNameScores(string(dat))
+	var want int = 871198282
+	if got != want {
+		t.Errorf("sumNameScores(someNamesStr) = %d; want %d", got, want)
 	}
 }
