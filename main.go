@@ -758,5 +758,31 @@ func prob19() int {
 	return sum
 }
 
+// factBigInt finds the factorial of an integer as a big.Int
+//
+// Helper for prob 20
+func factBigInt(n int) big.Int {
+	ret := big.NewInt(1)
+	for i := 1; i <= n; i++ {
+		ret.Mul(ret, big.NewInt(int64(i)))
+	}
+	return *ret
+}
+
+// sumDigitsBigInt finds the sum of all digits in a big.Int
+//
+// Helper for prob 20
+func sumDigitsBigInt(n big.Int) int {
+	sumDigits := 0
+	for _, c := range n.String() {
+		sumDigits += int(c - '0')
+	}
+	return sumDigits
+}
+
+func prob20() int {
+	return sumDigitsBigInt(factBigInt(100))
+}
+
 func main() {
 }
