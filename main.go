@@ -813,5 +813,74 @@ func sumNameScores(namesStr string) int {
 	}
 	return finalSum
 }
+
+func properDivisors(n int) []int {
+	// Proper divisors of n.
+    // 
+	// Not guaranteed to be in sorted order.
+	// NB the proper divisors of a number include 1 but not the number itself.
+	divs := []int{1}
+	for i := 2; i <= int(math.Floor(math.Sqrt(float64(n)))); i++ {
+		if n % i == 0 {
+			divs = append(divs, i)
+			j := n / i
+			if i != j {
+				divs = append(divs, j)
+			}
+		}
+	}
+	return divs
+}
+
+func isAbundant(n int) bool {
+	// An abundant numbe is one where the sum of the proper divisors 
+	// is greater than the number itself.
+	var spds int
+	for _, i := range(properDivisors(n)) {
+		spds += i
+	}
+	return spds > n
+}
+
+func prob23(upperBound int) int {
+	// Find the sum of all numbers that aren't the sum of two abundant numbers
+
+	// Build a slice of all abundant numbers below an upper limit
+	var abundants []int
+	for i := 1; i <= upperBound; i++ {
+		if isAbundant(i) {
+			abundants = append(abundants, i)
+		}
+	}
+	// Build a set all numbers that are the sum of two abundant numbers
+	// using abundant numbers from that slice
+	sumTwoAbundants := make(map[int]bool)
+	for _, i := range abundants {
+		for _, j := range abundants {
+			sumTwoAbundants[i+j] = true
+		}
+	}
+	// Find the sum of all numbers that aren't the sum of two abundant numbers
+	sum := 0
+	for i := 1; i <= upperBound; i++ {
+		if _, isSumTwoAbundants := sumTwoAbundants[i]; !isSumTwoAbundants {
+			sum += i
+		}
+	}
+	return sum
+}
+
 func main() {
+	//type BinaryNode struct {
+	//	left  *BinaryNode
+	//	right *BinaryNode
+	//	data  int
+	//	id    int
+	//}
+	//type BinaryTree struct {
+	//	root *BinaryNode
+	//}
+	// See https://www.golangprograms.com/golang-program-to-implement-binary-tree.html for more implementation info.
+	//
+	// Then perform Dijkstra's algorithm on this binary tree
 }

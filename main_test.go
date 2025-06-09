@@ -2,6 +2,8 @@ package main
 
 import (
 	"os"
+	"reflect"
+	"slices"
 	"testing"
 )
 
@@ -304,4 +306,40 @@ func TestProb22(t *testing.T) {
 	if got != want {
 		t.Errorf("sumNameScores(someNamesStr) = %d; want %d", got, want)
 	}
+}
+
+func TestProperDivisors(t *testing.T) {
+	n := 28
+	got := properDivisors(n)
+	slices.Sort(got)
+	want := []int{1, 2, 4, 7, 14}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("properDivisors(%d) = %+v; want %+v", n, got, want)
+	}
+}
+
+func TestIsAbundant(t *testing.T) {
+	var tests = []struct {
+		n    int
+		want bool
+	}{
+		{28, false},
+		{16, false},
+		{1056, true},
+	}
+	for _, tt := range tests {
+		got := isAbundant(tt.n)
+		if got != tt.want {
+			t.Errorf("isAbundant(%d) = %t; want %t", tt.n, got, tt.want)
+		}
+	}
+}
+
+func TestProb23(t *testing.T) {
+	got := prob23(28123)
+	want := 4179871
+	if got != want {
+		t.Errorf("prob23(upperBound) = %d; want %d", got, want)
+	}
+
 }
