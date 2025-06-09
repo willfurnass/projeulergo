@@ -4,6 +4,8 @@
 
 [Project Euler][projeuler] solutions in [Go][go].
 
+NB problems 18 and 21 skipped.
+
 ## Testing
 
 To run all acceptance and unit tests:
